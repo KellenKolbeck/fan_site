@@ -1,0 +1,9 @@
+<div class="container">
+  <ul>
+    <%= @comments.each do |comment| %>
+      <% comment.user %>
+      <% comment.content %>
+    <% end %>
+  </ul>
+  <%= link_to 'Create a new Comment', new_article_comment_path(@article) %>
+</div>

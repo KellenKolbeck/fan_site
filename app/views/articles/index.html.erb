@@ -1,0 +1,17 @@
+<div class="container">
+  <ul>
+    <% @articles.each do |article| %>
+      <li>
+        <%= link_to article.title, article_path(article) %><br>
+        <%= article.author %> |
+        <%= article.content %> |
+        <% if current_user %>
+          <%= link_to 'Delete', article_path(article), data: {confirm: "Are you sure?", method: "delete"} %> |
+          <%= link_to 'Edit', edit_article_path(article) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Create a new Article', new_article_path if current_user%>
+</div>

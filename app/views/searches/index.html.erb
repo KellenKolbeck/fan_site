@@ -1,0 +1,11 @@
+<%= form_tag(searches_path, method: 'GET') do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q, nil, placeholder: "Search") %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<% if @search_results.any? %>
+  <% @search_results.each do |result| %>
+    <%= link_to result.content, articles_path(result) %>
+  <% end %>
+<% end %>
