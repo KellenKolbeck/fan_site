@@ -40,10 +40,17 @@ body{
 
 .comments-title{
   font-weight: 800;
-  padding: 15px 0;
+  padding: 5px 0;
+  display: inline-block;
+}
+
+.comments-header{
   border-top: 2px solid #B5B5B5;
   border-bottom: 1px solid #D6D5D5;
+}
 
+.new-comment{
+  margin: 10px 0 0 0;
 }
 
 .sort{
