@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.update_attribute(:rating, 0)
     if @article.save
       redirect_to articles_path
     else
@@ -56,9 +57,20 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def upvote
+    binding.pry
+    @article.add_point
+    # @article.add_point
+    # redirect_to article_path(@article)
+  end
+
+  def downvote
+    @article.subtract_point
+  end
+
   private
     def article_params
-      params.require(:article).permit(:content, :author, :title)
+      params.require(:article).permit(:content, :author, :title, :rating)
     end
     def find_article
       @article = Article.find(params[:id])

@@ -16,3 +16,36 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body{
+  font-family: 'Lato', sans-serif;
+  color: #333333;
+}
+
+.title{
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.author{
+  color: #B5B5B5;
+  font-weight: 300;
+}
+
+.metadata{
+  color: #8A8686;
+  font-weight: 300;
+}
+
+.comments-title{
+  font-weight: 800;
+  padding: 15px 0;
+  border-top: 2px solid #B5B5B5;
+  border-bottom: 1px solid #D6D5D5;
+
+}
+
+.sort{
+  display: inline-block
+}

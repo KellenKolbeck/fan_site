@@ -5,7 +5,4 @@ Rails.application.routes.draw do
   end
   resources :searches
   devise_for :users
-  resources :comments do
-    resources :comments
-  end  
 end

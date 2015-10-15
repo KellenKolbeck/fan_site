@@ -1,17 +1,36 @@
-<p><%= @article.title %></p>
-<p><%= @article.author %></p>
-<p><%= @article.content %></p>
+<div class="col-sm-1">
 
-<% @article.comments.each do |comment| %>
-  <li>
-    <%= link_to comment.content, article_comment_path(@article, comment) %><br>
-    <%= comment.user %>
-    <% if current_user %>
-      <%= link_to 'Delete', article_comment_path(@article, comment), data: {confirm: "Are you sure?", method: "delete"} %> |
-      <%= link_to 'Edit', edit_article_comment_path(@article, comment) %>
-      <%= link_to 'Reply to this Post', new_comment_path(:parent_id => comment) %> <!-- TODO: Figure out Nested Routing -->
+  <% form_for @article do |f| %>
+    <%= hidden_field_tag :rating, @article.rating + 1 %>
+    <%= f.submit do %>
+      <span class="glyphicon glyphicon-chevron-up"></span>
     <% end %>
-  </li>
-<% end %>
+  <% end %>
+  <%= @article.rating %>
+  <%= link_to article_path(@article), :controller => :articles_controller, action: :downvote do %>
+    <span class="glyphicon glyphicon-chevron-down"></span>
+  <% end %>
+</div>
 
-<%= link_to 'New Comment', new_article_comment_path(@article), class: "btn btn-primary" if current_user %>
+<div class="col-sm-11">
+  <h1 class="title"><%= @article.title %></h1>
+  <p class="author"><%= @article.author %></p>
+  <p class="content"><%= @article.content %></p>
+  <p class="metadata"><%= @article.created_at.strftime("Created on %m/%d/%Y at %I:%M%p") %></p>
+
+  <h4 class="comments-title">Comments</h4>
+  <% @article.comments.each do |comment| %>
+    <li>
+      <%= comment.content %><br>
+      <%= comment.user %><br>
+      <%= comment.created_at.strftime("Created on %m/%d/%Y at %I:%M%p") %>
+      <% if current_user %>
+        <%= link_to 'Delete', article_comment_path(@article, comment), data: {confirm: "Are you sure?", method: "delete"} %> |
+        <%= link_to 'Edit', edit_article_comment_path(@article, comment) %>
+      <% end %>
+    </li>
+  <% end %>
+
+  <%= link_to 'New Comment', new_article_comment_path(@article), class: "btn btn-primary" if current_user %>
+
+</div>

@@ -9,18 +9,30 @@
   </div>
   <button type="submit">Sort</button>
 </form> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
 
-<%= form_tag(articles_path, method: 'GET') do %>
+    </div>
+    <div class="col-md-4">
+
+
+
+<%= form_tag(articles_path, method: 'GET', class:'sort') do %>
   <%= select_tag :sort, options_for_select([["A-Z", "Alphabetical ASC"], ["Z-A", "Alphabetical DESC"], ["Newest", "Newest"], ["Oldest", "Oldest"]]) %>
   <%= submit_tag 'Sort' %>
 <% end %>
+<%= link_to 'Create a New Article', new_article_path, class: "btn btn-primary" if current_user%>
+<br>
 
 <ul>
   <% @articles.each do |article| %>
+  <div class="well">
+
     <li>
-      <%= link_to article.title, article_path(article) %><br>
-      <%= article.author %> |
-      <%= article.content %> |
+      <%= link_to article.title, article_path(article), class: 'title' %><br>
+      <p class="metadata"><%= article.author %> |</p>
+      <p class="metadata"><%= article.content %> |</p>
       <% if current_user %>
         <%= link_to article_path(article), data: {confirm: "Are you sure?", method: "delete"} do %>
           <span class="glyphicon glyphicon-trash"></span> Delete
@@ -31,6 +43,12 @@
       <% end %>
     </li>
   <% end %>
+  </div>
 </ul>
+</div>
+<div class="col-md-4">
 
-<%= link_to 'Create a New Article', new_article_path, class: "btn btn-primary" if current_user%>
+</div>
+</div>
+
+</div>
