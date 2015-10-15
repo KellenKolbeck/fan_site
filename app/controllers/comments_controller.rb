@@ -8,28 +8,34 @@ class CommentsController < ApplicationController
   end
 
   def show
+    binding.pry
   end
 
   def new
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.new
+    @article = Article.find_by_id(params[:article_id])
+    @parent_comment = Article.find_by_id(params[:parent_id])
+    if (@article)
+      @comment = Comment.new
+    else
+      @comment = Comment.new(:parent_id => params[:parent_id])
+    end
     render :new
   end
 
   def create
     @article = Article.find_by_id(params[:article_id])
-    @parent_comment = Article.find_by_id(params[:commentable_id])
-    @comment = Comment.new(comment_params)
+    @parent_comment = Comment.find_by_id(params[:parent_id])
     if (@article)
-      @comment.update_attribute(:commentable, @article)
-      if (@comment.save)
+      new_comment = @article.comments.new(comment_params)
+      if (new_comment.save)
         redirect_to article_path(@article)
       else
         render :new
       end
     else
-      @comment.update_attribute(:commentable, @parent_comment)
-      if (@comment.save)
+      new_comment = Comment.new(comment_params)
+      if (new_comment.save)
+        binding.pry
         redirect_to comment_path(@parent_comment)
       else
         render :new
@@ -83,7 +89,7 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:content, :user)
+      params.require(:comment).permit(:content, :user, :parent_id)
     end
     def find_comment_and_article
       @comment = Comment.find(params[:id])

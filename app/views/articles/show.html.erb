@@ -9,7 +9,7 @@
     <% if current_user %>
       <%= link_to 'Delete', article_comment_path(@article, comment), data: {confirm: "Are you sure?", method: "delete"} %> |
       <%= link_to 'Edit', edit_article_comment_path(@article, comment) %>
-      <%= link_to 'Reply', new_comment_path(@article, comment) %> <!-- TODO: Figure out Nested Routing -->
+      <%= link_to 'Reply to this Post', new_comment_path(:parent_id => comment) %> <!-- TODO: Figure out Nested Routing -->
     <% end %>
   </li>
 <% end %>

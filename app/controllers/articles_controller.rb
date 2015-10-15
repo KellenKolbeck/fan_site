@@ -23,10 +23,10 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @comments = Comment.where('commentable_id = ?', @article.id)
+    @comments = @article.comments
     @comments.each do |comment|
       comment.destroy
-    end  
+    end
     @article.destroy
     redirect_to articles_path
   end

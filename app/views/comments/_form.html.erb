@@ -1,4 +1,5 @@
 <%= form_for [@article, @comment] do |f| %>
+  <%= f.hidden_field :parent_id %>
   <div class="form-group">
     <%= f.label :user %>
     <%= f.text_field :user, class: 'form-control' %>

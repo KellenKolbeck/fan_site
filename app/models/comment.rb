@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
-  belongs_to :article,
-  acts_as_tree order: "created_at"
+  belongs_to :article
   validates :user, :presence => true
   validates :content, :presence => true
+  has_ancestry
 end

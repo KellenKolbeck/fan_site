@@ -1,16 +1,14 @@
 <p><%= @comment.user %></p>
 <p><%= @comment.content %></p>
 
-<% @comment.comments.each do |comment| %>
+<% @comment.children.each do |comment| %>
   <li>
     <%= link_to comment.content, article_comment_path(@article, comment) %><br>
     <%= comment.user %>
     <% if current_user %>
-      <%= link_to 'Delete', article_comment_path(@article, comment), data: {confirm: "Are you sure?", method: "delete"} %> |
-      <%= link_to 'Edit', edit_article_comment_path(@article, comment) %>
-      <%= link_to 'Reply', new_comment_path(@article, comment) %> <!-- TODO: Figure out Nested Routing -->
+      <%= link_to 'Delete', comment_path(@article, comment), data: {confirm: "Are you sure?", method: "delete"} %> |
+      <%= link_to 'Edit', edit_comment_path(@article, comment) %>
+      <%= link_to 'Reply', new_comment_path(comment) %> <!-- TODO: Figure out Nested Routing -->
     <% end %>
   </li>
 <% end %>
-
-<%= link_to 'New Comment', new_article_comment_path(@article), class: "btn btn-primary" if current_user %>
