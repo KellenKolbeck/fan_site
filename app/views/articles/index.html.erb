@@ -1,54 +1,57 @@
-<!-- <form path="/" method="GET">
-  <div class="form-group">
-    <label for="sel1">Sort Options:</label>
-    <select class="form-control" id="sel1">
-      <option value="Alphabetical ASC">'A-Z'</option>
-      <option value="Alphabetical DESC">'Z-A'</option>
-      <option value="Created At">'Created At'</option>
-    </select>
-  </div>
-  <button type="submit">Sort</button>
-</form> -->
 <div class="container">
+  <br>
   <div class="row">
     <div class="col-md-4">
-
+    </div>
+    <div class="col-md-4 text-center">
+      <div id="create_article_button">
+        <%= link_to 'Create a New Article', new_article_path, class: "btn btn-primary" if current_user%>
+      </div>
+      <br>
     </div>
     <div class="col-md-4">
-
-
-
-<%= form_tag(articles_path, method: 'GET', class:'sort') do %>
-  <%= select_tag :sort, options_for_select([["A-Z", "Alphabetical ASC"], ["Z-A", "Alphabetical DESC"], ["Newest", "Newest"], ["Oldest", "Oldest"]]) %>
-  <%= submit_tag 'Sort' %>
-<% end %>
-<%= link_to 'Create a New Article', new_article_path, class: "btn btn-primary" if current_user%>
-<br>
-
-<ul>
-  <% @articles.each do |article| %>
-  <div class="well">
-
-    <li>
-      <%= link_to article.title, article_path(article), class: 'title' %><br>
-      <p class="metadata"><%= article.author %> |</p>
-      <p class="metadata"><%= article.content %> |</p>
-      <% if current_user %>
-        <%= link_to article_path(article), data: {confirm: "Are you sure?", method: "delete"} do %>
-          <span class="glyphicon glyphicon-trash"></span> Delete
+      <div id="sort_button" class="pull-right">
+        <%= form_tag(articles_path, method: 'GET', class:'sort') do %>
+        <%= select_tag :sort, options_for_select([["A-Z", "Alphabetical ASC"], ["Z-A", "Alphabetical DESC"], ["Newest", "Newest"], ["Oldest", "Oldest"]]) %>
+        <%= submit_tag 'Sort' %>
         <% end %>
-        <%= link_to edit_article_path(article) do %>
-          <span class="glyphicon glyphicon-edit"></span> Edit
-        <% end %>
-      <% end %>
-    </li>
-  <% end %>
+      </div>
+    </div>
   </div>
-</ul>
-</div>
-<div class="col-md-4">
+  <div class="row">
+    <div class="col-md-2">
+      <div id="side_well" class="well">
+        Popular Feeds
+        <br>
+        <br>
+        <li><%= link_to 'Microsoft'%></li>
+        <li><%= link_to 'Apple'%></li>
+        <li><%= link_to 'Oracle'%></li>
+        <li><%= link_to 'Facebook'%></li>
+        <li><%= link_to 'Google'%></li>
+      </div>
+    </div>
+    <div class="col-md-10 nopadding">
 
-</div>
-</div>
-
+      <ul id="article_list_ul">
+        <% @articles.each do |article| %>
+        <div class="well">
+          <li id="article_list">
+            <%= link_to article.title, article_path(article), class: 'title' %><br>
+            <p class="metadata">by <%= article.author %> |</p>
+            <p class="metadata"><%= article.content %></p>
+            <% if current_user %>
+            <%= link_to article_path(article), data: {confirm: "Are you sure?", method: "delete"} do %>
+            <span class="glyphicon glyphicon-trash"></span> Delete
+            <% end %>
+            <%= link_to edit_article_path(article) do %>
+            <span class="glyphicon glyphicon-edit"></span> Edit
+            <% end %>
+            <% end %>
+          </li>
+        </div>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
