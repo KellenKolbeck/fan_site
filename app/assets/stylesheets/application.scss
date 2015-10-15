@@ -49,3 +49,25 @@ body{
 .sort{
   display: inline-block
 }
+#create_article_button {
+  text-align: center;
+}
+#sort_button {
+  text-align: center;
+}
+.navbar-default .navbar-brand {
+  color: #ff0000;
+}
+#article_list {
+  list-style-type: none;
+}
+#article_list_ul {
+  list-style-type: none;
+}
+#side_well {
+  height: 80em;
+}
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
