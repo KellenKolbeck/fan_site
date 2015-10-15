@@ -1,0 +1,43 @@
+Is the Github documentation - commits and README - thorough and descriptive?
+
+  README looks good, missing rake:db:test:prepare however.
+  Commits are descriptive, maybe a few more?
+
+
+Is there good spec coverage?
+
+  Specs that are present are passing, doesn't appear to be any integration testing though.
+
+Do all specs pass?
+
+  The specs that are present are passing.
+
+Is the application logic clear and easy to navigate?
+ Yes the application logic seems easy to navigate.
+
+
+Can you make a test payment through Stripe?
+
+NÖ
+
+Is the site user-friendly?
+
+  Popular feeds doesn't seem to work? Everything else seems to work perfectly.
+
+Are there opportunities for refactoring?
+
+
+
+What features stand out?
+  Authentication
+  Sort by newest, oldest, and search bar
+
+
+
+What features could be improved?
+
+The upvote/downvote probably not implemented?
+
+Do you have any additional constructive criticism or positive feedback to share?
+ Project is clean and minimialistic. Most features work well besides the ones previoiusly
+ mentioned. Good work!

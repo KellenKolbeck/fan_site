@@ -58,7 +58,7 @@ class ArticlesController < ApplicationController
   end
 
   def upvote
-    binding.pry
+    # binding.pry
     @article.add_point
     # @article.add_point
     # redirect_to article_path(@article)
