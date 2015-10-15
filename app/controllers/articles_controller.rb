@@ -3,7 +3,19 @@ class ArticlesController < ApplicationController
   before_action :find_article, except: [:index, :new, :create]
 
   def index
-    @articles = Article.all
+    if (params[:sort])
+      if (params[:sort] == "Alphabetical ASC")
+        @articles = Article.all.sort{|a, b| a.title <=> b.title}
+      elsif (params[:sort] == "Alphabetical DESC")
+        @articles = Article.all.sort{|a, b| b.title <=> a.title}
+      elsif (params[:sort] == "Newest")
+        @articles = Article.all.sort{|a, b| b.created_at <=> a.created_at}
+      else
+        @articles = Article.all.sort{|a, b| a.created_at <=> b.created_at}
+      end
+    else
+      @articles = Article.all
+    end
   end
 
   def show

@@ -1,3 +1,20 @@
+<!-- <form path="/" method="GET">
+  <div class="form-group">
+    <label for="sel1">Sort Options:</label>
+    <select class="form-control" id="sel1">
+      <option value="Alphabetical ASC">'A-Z'</option>
+      <option value="Alphabetical DESC">'Z-A'</option>
+      <option value="Created At">'Created At'</option>
+    </select>
+  </div>
+  <button type="submit">Sort</button>
+</form> -->
+
+<%= form_tag(articles_path, method: 'GET') do %>
+  <%= select_tag :sort, options_for_select([["A-Z", "Alphabetical ASC"], ["Z-A", "Alphabetical DESC"], ["Newest", "Newest"], ["Oldest", "Oldest"]]) %>
+  <%= submit_tag 'Sort' %>
+<% end %>
+
 <ul>
   <% @articles.each do |article| %>
     <li>
