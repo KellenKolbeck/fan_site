@@ -5,11 +5,16 @@
       <%= article.author %> |
       <%= article.content %> |
       <% if current_user %>
-        <%= link_to 'Delete', article_path(article), data: {confirm: "Are you sure?", method: "delete"} %> |
-        <%= link_to 'Edit', edit_article_path(article) %>
+        <%= link_to article_path(article), data: {confirm: "Are you sure?", method: "delete"} do %>
+          <span class="glyphicon glyphicon-trash"></span> Delete
+        <% end %>
+        <%= link_to edit_article_path(article) do %>
+          <span class="glyphicon glyphicon-edit"></span> Edit
+        <% end %>
       <% end %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to 'Create a new Article', new_article_path if current_user%>
+
+<%= link_to 'Create a New Article', new_article_path, class: "btn btn-primary" if current_user%>
